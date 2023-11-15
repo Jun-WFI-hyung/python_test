@@ -24,6 +24,7 @@ class TodoPost(Resource):
 
 @Todo.route('/<int:todo_id>')
 class TodoSimple(Resource):
+    @Todo.response(500, 'data out of indexing')
     def get(self, todo_id):
         return {
             'todo_id': todo_id,
