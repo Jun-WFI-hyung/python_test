@@ -5,9 +5,9 @@ def get_check_sum(data: bytes) -> bytes:
     mask_32bit = 2**32-1
     fin = 0
     for i in range(0, len(data), 4):
-        unpacked_data = unpack_from('<I', data, offset=i)
-        fin += unpacked_data[0]
-        fin = fin & mask_32bit
+        unpacked_data, = unpack_from('<I', data, offset=i)
+        fin += unpacked_data
+    fin = fin & mask_32bit
     checksum = pack('<I', fin)
     return checksum
 
